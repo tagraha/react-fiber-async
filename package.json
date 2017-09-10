@@ -6,6 +6,7 @@
     "pug": "^2.0.0-rc.3",
     "react": "next",
     "react-async-bootstrapper": "^1.1.1",
+    "react-async-component": "^1.0.0-beta.3",
     "react-dom": "next",
     "react-jobs": "^1.0.0-beta.3",
     "react-redux": "^5.0.6",
