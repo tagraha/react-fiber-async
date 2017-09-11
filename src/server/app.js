@@ -2,9 +2,10 @@ import path from "path";
 import express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
+import { AsyncComponentProvider, createAsyncContext } from 'react-async-component';
 import { JobProvider, createJobContext } from 'react-jobs';
 import asyncBootstrapper from 'react-async-bootstrapper';
-import { StaticRouter as Router } from "react-router";
+import { StaticRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import serialize from 'serialize-javascript';
 import { ServerStyleSheet } from "styled-components";
@@ -46,28 +47,36 @@ function render(req, res, err) {
   const sheet = new ServerStyleSheet();
   // setting counter initial value to 5
   const store = createStore(rootReducer, {
-    counter: 5
+    counter: 5,
+    posts:{}
   });
 
   // Create the job context for our provider, this grants
   // us the ability to track the resolved jobs to send back to the client.
   const jobContext = createJobContext()
 
+  // Create a context for our AsyncComponentProvider.
+  const asyncContext = createAsyncContext();
+
   const _App = sheet.collectStyles(
-    <JobProvider jobContext={jobContext}>
-      <Provider store={store}>
+    <AsyncComponentProvider asyncContext={asyncContext}>
+      <JobProvider jobContext={jobContext}>
         <Router location={req.url} context={context}>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </Router>
-      </Provider>
-    </JobProvider>
+      </JobProvider>
+    </AsyncComponentProvider>
   );
 
   asyncBootstrapper(_App).then(() => {
     let AppString = renderToString(_App);
 
     // Get the resolved jobs state.
-    const jobsState = jobContext.getState()
+    const jobsState = jobContext.getState();
+
+    const asyncState = asyncContext.getState();
     
     const htmlString = `
       <html>
@@ -77,7 +86,8 @@ function render(req, res, err) {
         <body>
           <div id="app">${AppString}</div>
           <script type="text/javascript">
-            window.__PRELOADED_STATE__ = ${serialize(jobsState)}
+            window.__ASYNC_COMPONENTS_REHYDRATE_STATE__ = ${serialize(asyncState)}
+            window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState())}}
           </script>
         </body>
       </html>
