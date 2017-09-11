@@ -16,6 +16,10 @@ This project comes with the following features
 - [x] Styled components
 - [x] Nodemon
 
+## Todos:
+- [] React Helmet
+- [] React HotLoader
+
 ## Installation
 
 ```bash
