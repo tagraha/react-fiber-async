@@ -17,8 +17,8 @@ This project comes with the following features
 - [x] Nodemon
 
 ## Todos:
-- [] React Helmet
-- [] React HotLoader
+- [ ] React Helmet
+- [ ] React HotLoader
 
 ## Installation
 
