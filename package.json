@@ -9,6 +9,7 @@
     "react-async-bootstrapper": "^1.1.1",
     "react-async-component": "^1.0.0-beta.3",
     "react-dom": "next",
+    "react-helmet": "^5.2.0",
     "react-jobs": "^1.0.0-beta.3",
     "react-redux": "^5.0.6",
     "react-router": "next",
@@ -43,7 +44,7 @@
   "name": "react-universal-starter",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
+  "author": "betot",
   "license": "MIT",
   "scripts": {
     "add-contributor": "all-contributors add",
