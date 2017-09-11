@@ -19,6 +19,7 @@ This project comes with the following features
 ## Todos:
 - [ ] React Helmet
 - [ ] React HotLoader
+- [ ] CodeSplitting
 
 ## Installation
 
