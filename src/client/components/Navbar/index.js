@@ -42,6 +42,7 @@ class Navbar extends Component {
       <div>
         <Nav>
           <NavLink to="/">Home</NavLink>
+          <NavLink to="/asyncexample">Async Demo</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/counter">Counter</NavLink>
           <NavLink to="/500">500</NavLink>

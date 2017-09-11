@@ -7,6 +7,7 @@ import Core from "./components/Core";
 import Footer from "./components/Footer";
 import FadeIn from "./components/FadeIn";
 import Home from "./containers/Home";
+import AsyncExample from "./containers/AsyncExample";
 import About from "./containers/About";
 import NotFoundPage from "./containers/NotFound";
 import ServerError from "./containers/ServerError";
@@ -113,6 +114,7 @@ export default class App extends Component {
           <StyledCore>
             <Switch>
               <FadingRoute exact path="/" component={Home} />
+              <Route exact path="/asyncexample" component={AsyncExample} />
               <Route exact path="/about" component={About} />
               <Route exact path="/counter" component={Counter} />
               <RedirectWithStatus
