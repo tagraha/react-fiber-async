@@ -116,6 +116,6 @@ app.listen(port, () => {
       .NODE_ENV} mode on Node ${process.version}.`
   );
   if (isDevelopment) {
-    console.info(`Open http://localhost:8888`);
+    console.info(`Open http://localhost:${port}`);
   }
 });
