@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes, { string } from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import { withJob } from 'react-jobs';
 // import Helmet from 'react-helmet';
 import { getPostFromAPI } from '../../actions';
 
-class AsyncExample extends Component {
+class AsyncExample extends PureComponent {
   // if (!post) {
   //   // Post hasn't been fetched yet. It would be better if we had a "status"
   //   // reducer attached to our posts which gave us a bit more insight, such
