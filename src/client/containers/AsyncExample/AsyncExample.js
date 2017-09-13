@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes, { string } from 'prop-types';
+import Helmet from 'react-helmet';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withJob } from 'react-jobs';
@@ -22,6 +23,7 @@ class AsyncExample extends PureComponent {
 
 		return (
 			<div>
+        <Helmet title={title} />
 				<h1>{title} (from api)</h1>
 				<div>
 					{body}

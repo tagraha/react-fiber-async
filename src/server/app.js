@@ -1,6 +1,7 @@
 import path from "path";
 import express from "express";
 import React from "react";
+import Helmet from 'react-helmet';
 import { renderToString } from "react-dom/server";
 import { AsyncComponentProvider, createAsyncContext } from 'react-async-component';
 import { JobProvider, createJobContext } from 'react-jobs';
@@ -53,7 +54,7 @@ function render(req, res, err) {
 
   // Create the job context for our provider, this grants
   // us the ability to track the resolved jobs to send back to the client.
-  const jobContext = createJobContext()
+  const jobContext = createJobContext(rootReducer)
 
   // Create a context for our AsyncComponentProvider.
   const asyncContext = createAsyncContext();
@@ -72,22 +73,28 @@ function render(req, res, err) {
 
   asyncBootstrapper(_App).then(() => {
     let AppString = renderToString(_App);
+    
+    const helmet = Helmet.renderStatic();    
 
     // Get the resolved jobs state.
     const jobsState = jobContext.getState();
 
     const asyncState = asyncContext.getState();
+    const preloadState = store.getState();
     
     const htmlString = `
-      <html>
+      <html ${helmet.htmlAttributes.toString()}>
         <head>
-          <title>Example</title>
+          ${helmet.title.toString()}
+          ${helmet.meta.toString()}
+          ${helmet.link.toString()}
         </head>
         <body>
           <div id="app">${AppString}</div>
           <script type="text/javascript">
             window.__ASYNC_COMPONENTS_REHYDRATE_STATE__ = ${serialize(asyncState)}
-            window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState())}}
+            window.__JOBS_STATE__ = ${serialize(jobsState)}
+            window.__PRELOADED_STATE__ = ${JSON.stringify(preloadState)}
           </script>
         </body>
       </html>

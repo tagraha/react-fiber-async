@@ -25,15 +25,17 @@ const asyncComponentsRehydrateState = window.__ASYNC_COMPONENTS_REHYDRATE_STATE_
 // eslint-disable-next-line no-underscore-dangle
 const rehydrateState = window.__PRELOADED_STATE__;
 
+const JobsState = window.__JOBS_STATE__;
+
 function renderApp (TheApp) {
   const app = (
     <AsyncComponentProvider rehydrateState={asyncComponentsRehydrateState}>
-      <JobProvider rehydrateState={rehydrateState}>
-        <Provider store={store}>
-          <BrowserRouter forceRefresh={!supportsHistory}>
+      <JobProvider rehydrateState={JobsState}>
+        <BrowserRouter forceRefresh={!supportsHistory}>
+          <Provider store={store}>
             <TheApp />
-          </BrowserRouter>
-        </Provider>
+          </Provider>
+        </BrowserRouter>
       </JobProvider>
     </AsyncComponentProvider>
   );
