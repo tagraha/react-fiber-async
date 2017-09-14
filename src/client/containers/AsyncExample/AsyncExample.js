@@ -8,18 +8,15 @@ import { withJob } from 'react-jobs';
 import { getPostFromAPI } from '../../actions';
 
 class AsyncExample extends PureComponent {
-  // if (!post) {
-  //   // Post hasn't been fetched yet. It would be better if we had a "status"
-  //   // reducer attached to our posts which gave us a bit more insight, such
-  //   // as whether the post is currently being fetched, or if the fetch failed.
-  //   return null;
-  // }
-	componentDidMount() {
-		console.log('didMount di AsyncExample');
-		console.log(this.props);
-	}
 	render() {
 		const { title, body } = this.props.post;
+
+    if (!this.props.post) {
+      // Post hasn't been fetched yet. It would be better if we had a "status"
+      // reducer attached to our posts which gave us a bit more insight, such
+      // as whether the post is currently being fetched, or if the fetch failed.
+      return null;
+    }
 
 		return (
 			<div>
@@ -62,10 +59,10 @@ export default compose(
   connect(mapStateToProps, mapActionsToProps),
   withJob({
     work: ({ match, post, getData }) => {
-			// if (post) {
-			// 	// We already have a post, just return true.
-			// 	return true;
-			// }
+			if (post) {
+				// We already have a post, just return true.
+				return true;
+			}
 
       // Execute the redux-thunk powered action that returns a Promise and
       // fetches the post.
