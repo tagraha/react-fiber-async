@@ -6,7 +6,7 @@ The popular front end stack today is changing fast with React, react-router and 
 #### Credit
 - this repo was originally created by https://github.com/imbhargav5 (https://github.com/imbhargav5/react-universal-starter)
 - react-jobs (Asynchronously resolve data for your components, with support for server side rendering. - https://github.com/ctrlplusb/react-jobs)
-- react-async-component (Resolve components asynchronously, with support for code splitting and advanced server side rendering use cases. -https://github.com/ctrlplusb/react-async-component)
+- react-async-component (Resolve components asynchronously, with support for code splitting and advanced server side rendering use cases. - https://github.com/ctrlplusb/react-async-component)
 - react-async-bootstraper (Resolve components asynchronously, with support for code splitting and advanced server side rendering use cases.
  - https://github.com/ctrlplusb/react-async-component)
 
