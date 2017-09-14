@@ -82,7 +82,7 @@ function render(req, res, err) {
     const asyncState = asyncContext.getState();
     const preloadState = store.getState();
     
-    const htmlString = `
+    const htmlString = `<!DOCTYPE html>
       <html ${helmet.htmlAttributes.toString()}>
         <head>
           ${helmet.title.toString()}
@@ -107,6 +107,8 @@ function render(req, res, err) {
       content: htmlString,
       styles: styleTags
     });
+
+    res.end();
   });
 }
 
