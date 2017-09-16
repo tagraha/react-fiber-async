@@ -96,17 +96,21 @@ function render(req, res, err) {
             window.__JOBS_STATE__ = ${serialize(jobsState)}
             window.__PRELOADED_STATE__ = ${JSON.stringify(preloadState)}
           </script>
+
+          <script src="http://localhost:8080/manifest.bundle.js" charset="utf-8"></script>
+          <script src="http://localhost:8080/vendor.bundle.js" charset="utf-8"></script>
+          <script src="http://localhost:8080/main.bundle.js" charset="utf-8"></script>
         </body>
       </html>
     `
 
     const styleTags = sheet.getStyleTags();
-    // res.send(htmlString);
+    res.send(htmlString);
 
-    res.render(indexTemplate, {
-      content: htmlString,
-      styles: styleTags
-    });
+    // res.render(indexTemplate, {
+    //   content: htmlString,
+    //   styles: styleTags
+    // });
 
     res.end();
   });
